@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiOutlineClockCircle, AiFillHeart } from 'react-icons/ai'
 import { FaEthereum } from 'react-icons/fa'
+import Modal from '../Modal/Modal'
 
 function NFTCard({ img, title, price, likes, sale }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
-      <div className='flex group flex-col space-y-10 rounded-lg overflow-hidden border border-slate-400/10 pb-8 hover:shadow-xl duration-500 ease-in-out hover:shadow-white/5 relative'>
+      <div onClick={() => setIsOpen(true)} className='flex group flex-col space-y-10 rounded-lg overflow-hidden border border-slate-400/10 pb-8 hover:shadow-xl duration-500 ease-in-out hover:shadow-white/5 relative'>
         {/* Image & Counter */}
         <div className='flex flex-col items-start relative'>
           <img src={img} alt='NFT' className='object-cover' />
@@ -41,7 +44,12 @@ function NFTCard({ img, title, price, likes, sale }) {
           </button>
         </div>
       </div>
+    
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+      This is Modal Content!
+    </Modal>
     </>
+   
   )
 }
 
