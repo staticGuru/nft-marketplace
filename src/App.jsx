@@ -1,13 +1,13 @@
-
 // import './App.css'
 
-function App() {
+import { Fragment } from "react";
 
-  return (
-    <h1 className="text-8xl font-bold underline">
-      Hello world!
-    </h1>
+function App() {
+  return(
+    <Fragment>
+    <NFTCollections/>
+    </Fragment>
   )
 }
 
-export default App
+export default App;
