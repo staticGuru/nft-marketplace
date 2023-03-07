@@ -59,7 +59,14 @@ function ConnectWalletButton() {
     }
   };
   return (
-    <div>
+    <div className="flex flex-row">
+      <div class="mb-3 pt-0">
+        <input
+          type="text"
+          placeholder="Enter the Opensea account(0xa1243...A3422)"
+          classkName="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-1/2"
+        />
+      </div>
       <button
         className="button is-white connect-wallet"
         onClick={connectWallet}
