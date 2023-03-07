@@ -8,6 +8,8 @@ import {
   childVariants,
 } from "../../animations/hotProducts";
 import PlaceHolderLoading from "../loader/PlaceHolderLoading";
+import Header from "../Headers/header";
+import ConnectWallet from "../ConnectWallet/ConnectWallet";
 function NFTCollections({walletAccount}) {
   const [nftLists, setNftLists] = React.useState([]);
   React.useEffect(() => {
@@ -33,33 +35,15 @@ function NFTCollections({walletAccount}) {
   }, [walletAccount]);
   return (
     <>
+    
+
       <section className="p-4 pb-24 text-white">
         <div className="container max-w-6xl mx-auto overflow-hidden">
           <div className="flex flex-col items-center space-y-8">
-            {/* Content */}
-            <motion.div
-              variants={parentVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="flex flex-col items-center space-y-4 "
-            >
-              <motion.h1
-                variants={childVariants}
-                className="text-2xl md:text-3xl font-medium"
-              >
-                NFT Market place
-              </motion.h1>
-              <motion.p
-                variants={childVariants}
-                className="text-slate-400 max-w-lg text-center"
-              >
-                We are a huge marketplace dedicated to connecting great artists
-                of all Techwind with their fans and unique token collectors!
-              </motion.p>
-            </motion.div>
+        
             {/* Collection of NFTs */}
-            {nftLists.length ? (
+            {!walletAccount?<ConnectWallet/>:
+            nftLists.length ? (
               <motion.div
                 variants={parentNFTVariants}
                 initial="hidden"
