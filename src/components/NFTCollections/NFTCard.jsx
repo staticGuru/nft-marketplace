@@ -48,7 +48,7 @@ function NFTCard(props) {
       </div>
     
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-      <NFTDetail {...props}/>
+      <NFTDetail {...props} handleClose={() => setIsOpen(false)}/>
     </Modal>
     </>
    

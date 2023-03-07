@@ -38,6 +38,7 @@ function NFTCardsList({nftLists}) {
               likes={nft.owned_asset_count}
               sale={nft.owned_asset_count}
               description={nft.description}
+              slug={nft.slug}
             />
         )
       })}

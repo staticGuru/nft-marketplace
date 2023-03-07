@@ -9,7 +9,7 @@ import { FaEthereum } from "react-icons/fa";
 import Card from "../base/Card";
 
 export function NFTDetail(props){
-  const { img, title, price, likes, description }=props;
+  const { img, title, price, likes, description,slug,handleClose }=props;
   const [colors, setColors] = useState([]);
   const getColors = (colors) => {
     setColors((c) => [...c, ...colors]);
@@ -17,6 +17,10 @@ export function NFTDetail(props){
   useEffect(() => {
     setColors([]);
   }, []);
+  const openInNewTab = (slug) => {
+    handleClose(false);
+    if(window) window.open(`https://opensea.io/collection/${slug}`, '_blank', 'noreferrer');
+  };
 
   return (
     <div>
@@ -34,15 +38,15 @@ export function NFTDetail(props){
               <div id="detail-info" style={{}}>
                 <div id="detail-info-container">
                   <p id="collection">NFT</p>
-                  <p id="name"> {title} </p>
+                  <p id="name">{title} </p>
                   <p id="description">{description}</p>
                 </div>
 
                 <div id="detail-controls">
                   <Button
-                    width={
-                       "70%"}
+                    width="70%"
                     height="50px"
+                    onClick={()=>openInNewTab(slug)}
                     child={
                       <div id="button-child">
                         <FaEthereum size="28px" />
