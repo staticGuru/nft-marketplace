@@ -8,15 +8,18 @@ import {
   childVariants,
 } from "../../animations/hotProducts";
 import PlaceHolderLoading from "../loader/PlaceHolderLoading";
-function NFTCollections() {
+function NFTCollections({walletAccount}) {
   const [nftLists, setNftLists] = React.useState([]);
   React.useEffect(() => {
+     console.log("walletAccount",walletAccount)
+     let demoaccount="0x943590A42C27D08e3744202c4Ae5eD55c2dE240D"
     async function fetchData() {
       const items = await fetch(
-        `https://api.opensea.io/api/v1/collections?asset_owner=0x943590A42C27D08e3744202c4Ae5eD55c2dE240D&offset=0&limit=50`
+        `https://api.opensea.io/api/v1/collections?asset_owner=${walletAccount}&offset=0&limit=50`
       )
         .then((res) => res.json())
         .then((res) => {
+          console.log("res=====>",res)
           return res;
         })
         .catch((e) => {
@@ -26,8 +29,8 @@ function NFTCollections() {
         });
       setNftLists(items);
     }
-    fetchData();
-  }, []);
+    if(walletAccount) fetchData();
+  }, [walletAccount]);
   return (
     <>
       <section className="p-4 pb-24 text-white">
