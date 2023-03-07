@@ -8,17 +8,12 @@ import { FaEthereum } from "react-icons/fa";
 // import { useMobile } from "../../hooks/isMobile";
 import Card from "../base/Card";
 
-export function NFTDetail(){
-
+export function NFTDetail(props){
+  const { img, title, price, likes, description }=props;
   const [colors, setColors] = useState([]);
-
-
-
   const getColors = (colors) => {
     setColors((c) => [...c, ...colors]);
   };
-
-
   useEffect(() => {
     setColors([]);
   }, []);
@@ -33,14 +28,14 @@ export function NFTDetail(){
             //Detail Content
             <div id="detail-content">
               <ColorExtractor getColors={getColors}>
-                <img id="detail-image" src={"https://www.tutorialspoint.com/javafx/images/javafx-mini-logo.jpg"} />
+                <img id="detail-image" src={img} />
               </ColorExtractor>
 
               <div id="detail-info" style={{}}>
                 <div id="detail-info-container">
-                  <p id="collection"> {"state.item.name"} </p>
-                  <p id="name"> {"state.item.name"} </p>
-                  <p id="description"> {"state.item.description"} </p>
+                  <p id="collection">NFT</p>
+                  <p id="name"> {title} </p>
+                  <p id="description">{description}</p>
                 </div>
 
                 <div id="detail-controls">

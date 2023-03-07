@@ -4,7 +4,8 @@ import { FaEthereum } from 'react-icons/fa'
 import Modal from '../Modal/Modal'
 import { NFTDetail } from '../NFTDetails/NFTDetail';
 
-function NFTCard({ img, title, price, likes, sale }) {
+function NFTCard(props) {
+  const { img, title, price, likes }=props;
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,12 +14,12 @@ function NFTCard({ img, title, price, likes, sale }) {
         {/* Image & Counter */}
         <div className='flex flex-col items-start relative'>
           <img src={img} alt='NFT' className='object-cover' />
-          {sale && (
+          {/*sale && (
             <div className='flex space-x-2 items-center justify-center px-4 py-1 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-xl absolute bottom-5 left-5'>
               <AiOutlineClockCircle />
               <p className='text-xs'>66 : 08 : 19 : 27</p>
             </div>
-          )}
+          )*/}
         </div>
         {/* Content */}
         <div className='px-6 flex flex-col space-y-3'>
@@ -47,7 +48,7 @@ function NFTCard({ img, title, price, likes, sale }) {
       </div>
     
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-      <NFTDetail />
+      <NFTDetail {...props}/>
     </Modal>
     </>
    
