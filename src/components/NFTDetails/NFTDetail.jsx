@@ -9,7 +9,7 @@ import { FaEthereum } from "react-icons/fa";
 import Card from "../base/Card";
 
 export function NFTDetail(props){
-  const { img, title, price, likes, description,slug,handleClose }=props;
+  const { img, title, likes, description,slug,handleClose }=props;
   const [colors, setColors] = useState([]);
   const getColors = (colors) => {
     setColors((c) => [...c, ...colors]);
@@ -19,7 +19,7 @@ export function NFTDetail(props){
   }, []);
   const openInNewTab = (slug) => {
     handleClose(false);
-    if(window) window.open(`https://opensea.io/collection/${slug}`, '_blank', 'noreferrer');
+    if(window) window.open(`${import.meta.env.VITE_APP_OPENSEA_API}/${slug}`, '_blank', 'noreferrer');
   };
 
   return (

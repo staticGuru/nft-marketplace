@@ -36,7 +36,6 @@ function NFTCardsList({nftLists}) {
               title={nft.name}
               price={nft.opensea_seller_fee_basis_points}
               likes={nft.owned_asset_count}
-              sale={nft.owned_asset_count}
               description={nft.description}
               slug={nft.slug}
             />
