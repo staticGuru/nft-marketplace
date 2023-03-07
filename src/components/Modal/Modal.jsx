@@ -23,8 +23,8 @@ function Modal({ children, isOpen, handleClose }) {
         nodeRef={nodeRef}
       >
         <div className="modal" ref={nodeRef}>
-          <div className="modal-content">
-            <button onClick={handleClose} className="close-btn">
+          <div className="relative">
+            <button onClick={handleClose} className="absolute z-10 top-5 right-5 text-white">
               Close
             </button>
             <div>{children}</div>

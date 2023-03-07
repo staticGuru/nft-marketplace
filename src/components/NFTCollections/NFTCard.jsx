@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineClockCircle, AiFillHeart } from 'react-icons/ai'
 import { FaEthereum } from 'react-icons/fa'
 import Modal from '../Modal/Modal'
+import { NFTDetail } from '../NFTDetails/NFTDetail';
 
 function NFTCard({ img, title, price, likes, sale }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,7 @@ function NFTCard({ img, title, price, likes, sale }) {
       </div>
     
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-      This is Modal Content!
+      <NFTDetail />
     </Modal>
     </>
    
