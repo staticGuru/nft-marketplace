@@ -7,29 +7,27 @@ import {
   parentVariants,
   childVariants,
 } from "../../animations/hotProducts";
+import PlaceHolderLoading from "../loader/PlaceHolderLoading";
 function NFTCollections() {
-     const [nftLists,setNftLists]=React.useState([])
+  const [nftLists, setNftLists] = React.useState([]);
   React.useEffect(() => {
-     async function fetchData() {
-          const items = await fetch(
-            `https://api.opensea.io/api/v1/collections?asset_owner=0x943590A42C27D08e3744202c4Ae5eD55c2dE240D&offset=0&limit=50`
-          )
-            .then((res) => res.json())
-            .then((res) => {
-              return res;
-            })
-            .catch((e) => {
-              console.error(e);
-              console.error("Could not talk to OpenSea");
-              return null;
-            });
-            setNftLists(items)
-      
-         
-        }
+    async function fetchData() {
+      const items = await fetch(
+        `https://api.opensea.io/api/v1/collections?asset_owner=0x943590A42C27D08e3744202c4Ae5eD55c2dE240D&offset=0&limit=50`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          return res;
+        })
+        .catch((e) => {
+          console.error(e);
+          console.error("Could not talk to OpenSea");
+          return null;
+        });
+      setNftLists(items);
+    }
     fetchData();
   }, []);
- console.log(nftLists)
   return (
     <>
       <section className="p-4 pb-24 text-white">
@@ -58,16 +56,20 @@ function NFTCollections() {
               </motion.p>
             </motion.div>
             {/* Collection of NFTs */}
-            <motion.div
-              variants={parentNFTVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8"
-            >
-              {/* Card 1 */}
-              {nftLists.length!==0?<NFTCardsList nftLists={nftLists}/>:null}
-            </motion.div>
+            {nftLists.length ? (
+              <motion.div
+                variants={parentNFTVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8"
+              >
+                {/* Card 1 */}
+                <NFTCardsList nftLists={nftLists} />
+              </motion.div>
+            ) : (
+              <PlaceHolderLoading count={4} />
+            )}
             <div className="md:flex items-center space-x-2 text-slate-400 font-semibold hidden  ">
               <p>Explore All Items</p>
               <AiOutlineArrowRight size={12} />
