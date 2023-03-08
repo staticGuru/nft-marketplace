@@ -12,21 +12,20 @@ import Header from "../Headers/header";
 import ConnectWallet from "../ConnectWallet/ConnectWallet";
 import { useStateContext } from "../../context";
 
-function NFTCollections({walletAccount}) {
+function NFTCollections() {
   const [nftLists, setNftLists] = React.useState([]);
-  const currentUserAccount = useStateContext();
-  console.log("currentUserAccount,currentUserAccount",currentUserAccount)
+  const { currentUserAccount } = useStateContext();
 
   React.useEffect(() => {
-     console.log("walletAccount",walletAccount,currentUserAccount)
-     let demoaccount="0x943590A42C27D08e3744202c4Ae5eD55c2dE240D"
+    console.log("walletAccount", currentUserAccount);
+    let demoaccount = "0x943590A42C27D08e3744202c4Ae5eD55c2dE240D";
     async function fetchData() {
       const items = await fetch(
-        `https://api.opensea.io/api/v1/collections?asset_owner=${walletAccount}&offset=0&limit=50`
+        `https://api.opensea.io/api/v1/collections?asset_owner=${currentUserAccount}&offset=0&limit=50`
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log("res=====>",res)
+          console.log("res=====>", res);
           return res;
         })
         .catch((e) => {
@@ -36,23 +35,18 @@ function NFTCollections({walletAccount}) {
         });
       setNftLists(items);
     }
-    if(walletAccount) fetchData();
-  }, [walletAccount]);
-  React.useEffect(()=>{
-    console.log("fromenftcollectionss",currentUserAccount)
-  },[currentUserAccount])
-  
+    if (currentUserAccount) fetchData();
+  }, [currentUserAccount]);
+
   return (
     <>
-    
-
       <section className="p-4 pb-24 text-white">
         <div className="container max-w-6xl mx-auto overflow-hidden">
           <div className="flex flex-col items-center space-y-8">
-        
             {/* Collection of NFTs */}
-            {!walletAccount?<ConnectWallet/>:
-            nftLists.length ? (
+            {!currentUserAccount ? (
+              <ConnectWallet />
+            ) : nftLists.length ? (
               <motion.div
                 variants={parentNFTVariants}
                 initial="hidden"
