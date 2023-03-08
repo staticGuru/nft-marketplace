@@ -3,7 +3,7 @@ import { useStateContext } from "../../context";
 
 function ConnectWalletButton() {
   const [walletAddress, setWalletAddress] = useState("");
-  const {changeCurrentUserAccount } = useStateContext();
+  const {changeCurrentUserAccount,currentUserAccount} = useStateContext();
   useEffect(() => {
     getCurrentWalletConnected();
     addWalletListener();
@@ -68,11 +68,11 @@ function ConnectWalletButton() {
         onClick={connectWallet}
       >
         <span className="is-link has-text-weight-bold">
-          {walletAddress && walletAddress.length > 0
-            ? `Connected: ${walletAddress.substring(
+          {currentUserAccount && currentUserAccount.length > 0
+            ? `Connected: ${currentUserAccount.substring(
                 0,
                 6
-              )}...${walletAddress.substring(38)}`
+              )}...${currentUserAccount.substring(38)}`
             : "Connect Wallet"}
         </span>
       </button>
