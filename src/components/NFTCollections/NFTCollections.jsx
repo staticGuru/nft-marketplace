@@ -10,10 +10,15 @@ import {
 import PlaceHolderLoading from "../loader/PlaceHolderLoading";
 import Header from "../Headers/header";
 import ConnectWallet from "../ConnectWallet/ConnectWallet";
+import { useStateContext } from "../../context";
+
 function NFTCollections({walletAccount}) {
   const [nftLists, setNftLists] = React.useState([]);
+  const currentUserAccount = useStateContext();
+  console.log("currentUserAccount,currentUserAccount",currentUserAccount)
+
   React.useEffect(() => {
-     console.log("walletAccount",walletAccount)
+     console.log("walletAccount",walletAccount,currentUserAccount)
      let demoaccount="0x943590A42C27D08e3744202c4Ae5eD55c2dE240D"
     async function fetchData() {
       const items = await fetch(
@@ -33,6 +38,10 @@ function NFTCollections({walletAccount}) {
     }
     if(walletAccount) fetchData();
   }, [walletAccount]);
+  React.useEffect(()=>{
+    console.log("fromenftcollectionss",currentUserAccount)
+  },[currentUserAccount])
+  
   return (
     <>
     

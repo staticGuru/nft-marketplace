@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useStateContext } from "../../context";
 
 function ConnectWalletButton() {
   const [walletAddress, setWalletAddress] = useState("");
-
+  const {changeCurrentUserAccount } = useStateContext();
   useEffect(() => {
     getCurrentWalletConnected();
     addWalletListener();
+    changeCurrentUserAccount(walletAddress);
   }, [walletAddress]);
   const connectWallet = async () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -35,14 +37,14 @@ function ConnectWalletButton() {
           setWalletAddress(accounts[0]);
           console.log(accounts[0]);
         } else {
-          console.log("Connect to MetaMask using the Connect button");
+         alert("Connect to MetaMask using the Connect button");
         }
       } catch (err) {
         console.error(err.message);
       }
     } else {
       /* MetaMask is not installed */
-      console.log("Please install MetaMask");
+      alert("Please install MetaMask");
     }
   };
 
@@ -50,6 +52,7 @@ function ConnectWalletButton() {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       window.ethereum.on("accountsChanged", (accounts) => {
         setWalletAddress(accounts[0]);
+       
         console.log(accounts[0]);
       });
     } else {
