@@ -65,10 +65,10 @@ function NFTCollections() {
             ) : (
               <PlaceHolderLoading count={4} />
             )}
-            <div onClick={(e)=>fetchData(limit+10)} className="md:flex items-center space-x-2 text-slate-400 font-semibold hidden  ">
+            {nftLists.length? <div onClick={(e)=>fetchData(limit+10)} className="md:flex items-center space-x-2 text-slate-400 font-semibold hidden  ">
               <p>Load more</p>
               <AiOutlineArrowRight size={12} />
-            </div>
+            </div>:null}
           </div>
         </div>
       </section>

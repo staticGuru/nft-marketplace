@@ -5,7 +5,6 @@ import "../../styles/NFTDetails.css"
 import { ColorExtractor } from "react-color-extractor";
 import Button from "../base/Button";
 import { FaEthereum } from "react-icons/fa";
-// import { useMobile } from "../../hooks/isMobile";
 import Card from "../base/Card";
 
 export function NFTDetail(props){

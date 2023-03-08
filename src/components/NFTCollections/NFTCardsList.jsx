@@ -1,6 +1,5 @@
 import React from 'react'
 import NFTCard from './NFTCard'
-import nfts from '../../data/nfts'
 import { motion } from 'framer-motion'
 function NFTCardsList({nftLists}) {
   const parentVariants = {
